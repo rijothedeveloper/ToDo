@@ -1,6 +1,13 @@
 const toDoBtn = document.querySelector("#toDoButton");
 const toDoInput = document.querySelector("input[name='todo-name']");
 const list = document.querySelector("ul");
+let toDos="";
+
+updateToDos();
+
+function updateToDos() {
+    list.innerHTML = localStorage.toDos;
+}
 
 toDoBtn.addEventListener("click", function(event) {
     event.preventDefault();
@@ -14,6 +21,7 @@ function createToDo(toDo) {
     btn.innerText = "remove";
     newLi.append(btn);
     list.append(newLi);
+    updateLocalStorage();
 }
 
 list.addEventListener("click", function(event) {
@@ -27,8 +35,15 @@ list.addEventListener("click", function(event) {
 
 function removeElement(element) {
     element.remove();
+    updateLocalStorage();
 }
 
 function markCompleted(element) {
     element.classList.toggle("completed");
+    updateLocalStorage();
+}
+
+function updateLocalStorage() {
+    toDos = list.innerHTML;
+    localStorage.toDos = toDos;
 }
