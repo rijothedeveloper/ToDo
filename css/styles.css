@@ -1,0 +1,8 @@
+li{
+    font-weight: bold;
+}
+
+.completed {
+    text-decoration: line-through;
+    font-weight: 300;
+}
